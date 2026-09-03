@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #f8fafc;
+    color: #0f172a;
+  }
+  
+  h1, h2, h3, .font-serif-heading {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+/* Sailor-inspired color tokens */
+:root {
+  --color-sailor-navy: #0b1b3d;
+  --color-sailor-blue: #1d4ed8;
+  --color-brand-gold: #d97706;
+  --color-brand-red: #e11d48;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Sailor Header Glass / Sticky shadow */
+.sailor-header {
+  background: #ffffff;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+}
+
+.sailor-topbar {
+  background: #0b1b3d;
+  color: #e2e8f0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
