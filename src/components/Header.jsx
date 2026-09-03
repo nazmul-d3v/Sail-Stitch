@@ -22,7 +22,10 @@ export default function Header({
   searchQuery,
   setSearchQuery,
   selectedCategory,
-  setSelectedCategory
+  setSelectedCategory,
+  user,
+  onOpenAuth,
+  onOpenProfile
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -55,10 +58,27 @@ export default function Header({
 
           {/* Right links */}
           <div className="flex items-center gap-4 ml-auto text-[11px] font-medium">
-            <span className="flex items-center gap-1 text-slate-300 hover:text-amber-400 cursor-pointer">
-              <User className="w-3.5 h-3.5 text-amber-400" />
-              Log in
-            </span>
+            {user ? (
+              <button 
+                onClick={onOpenProfile}
+                className="flex items-center gap-1.5 text-slate-100 hover:text-amber-400 font-bold bg-slate-900/90 px-3 py-1 rounded-full border border-amber-500/40 hover:border-amber-400 transition-all shadow-sm"
+              >
+                <img 
+                  src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop'} 
+                  alt={user.name} 
+                  className="w-4 h-4 rounded-full object-cover border border-amber-400"
+                />
+                <span className="truncate max-w-[100px]">Hi, {user.name.split(' ')[0]}</span>
+              </button>
+            ) : (
+              <button 
+                onClick={onOpenAuth}
+                className="flex items-center gap-1 text-slate-300 hover:text-amber-400 transition-colors cursor-pointer"
+              >
+                <User className="w-3.5 h-3.5 text-amber-400" />
+                Log in
+              </button>
+            )}
             <span className="text-slate-600">|</span>
             <span 
               onClick={() => setSelectedCategory('all')}

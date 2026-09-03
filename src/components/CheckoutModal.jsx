@@ -10,7 +10,8 @@ export default function CheckoutModal({
   isOpen, 
   onClose, 
   cartItems, 
-  onClearCart 
+  onClearCart,
+  user
 }) {
   const [step, setStep] = useState('form'); // 'form' | 'success'
   const [paymentMethod, setPaymentMethod] = useState('bkash');
@@ -27,8 +28,16 @@ export default function CheckoutModal({
   useEffect(() => {
     if (isOpen) {
       setStep('form');
+      if (user) {
+        setFormData(prev => ({
+          ...prev,
+          name: user.name || prev.name,
+          email: user.email || prev.email,
+          phone: user.phone || prev.phone
+        }));
+      }
     }
-  }, [isOpen]);
+  }, [isOpen, user]);
 
   if (!isOpen) return null;
 

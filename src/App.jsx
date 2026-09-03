@@ -7,6 +7,8 @@ import ProductQuickView from './components/ProductQuickView';
 import CartDrawer from './components/CartDrawer';
 import CheckoutModal from './components/CheckoutModal';
 import StoreLocatorModal from './components/StoreLocatorModal';
+import AuthModal from './components/AuthModal';
+import UserProfileModal from './components/UserProfileModal';
 import Footer from './components/Footer';
 import { PRODUCTS, CATEGORIES } from './data/products';
 import { SlidersHorizontal, ArrowUpDown, ShoppingBag, Home, MapPin, Search, Sparkles } from 'lucide-react';
@@ -23,6 +25,14 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isStoreLocatorOpen, setIsStoreLocatorOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+
+  // User Authentication state persisted in localStorage
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem('sail_stitch_user');
+    return saved ? JSON.parse(saved) : null;
+  });
 
   // Cart & Wishlist persisted in localStorage
   const [cartItems, setCartItems] = useState(() => {
@@ -38,12 +48,28 @@ export default function App() {
   });
 
   useEffect(() => {
+    if (user) {
+      localStorage.setItem('sail_stitch_user', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('sail_stitch_user');
+    }
+  }, [user]);
+
+  useEffect(() => {
     localStorage.setItem('sail_stitch_cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
   useEffect(() => {
     localStorage.setItem('sail_stitch_wishlist', JSON.stringify(wishlist));
   }, [wishlist]);
+
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+  };
 
   // Handlers
   const handleAddToCart = (product, selectedSize, selectedColor, quantity = 1) => {
@@ -135,6 +161,9 @@ export default function App() {
         setSearchQuery={setSearchQuery}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
+        user={user}
+        onOpenAuth={() => setIsAuthModalOpen(true)}
+        onOpenProfile={() => setIsProfileModalOpen(true)}
       />
 
       {/* Hero Banner Slider */}
@@ -304,12 +333,30 @@ export default function App() {
         onClose={() => setIsCheckoutOpen(false)}
         cartItems={cartItems}
         onClearCart={() => setCartItems([])}
+        user={user}
       />
 
       {/* Store Locator Modal */}
       <StoreLocatorModal
         isOpen={isStoreLocatorOpen}
         onClose={() => setIsStoreLocatorOpen(false)}
+      />
+
+      {/* User Login & Register Modal */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onLoginSuccess={handleLoginSuccess}
+      />
+
+      {/* User Profile & Account Drawer Modal */}
+      <UserProfileModal
+        isOpen={isProfileModalOpen}
+        onClose={() => setIsProfileModalOpen(false)}
+        user={user}
+        onLogout={handleLogout}
+        wishlistCount={wishlist.length}
+        onOpenWishlist={() => setSelectedCategory('all')}
       />
     </div>
   );
