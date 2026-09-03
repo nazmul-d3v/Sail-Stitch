@@ -194,6 +194,13 @@ export default function App() {
         onOpenWishlist={() => setIsWishlistOpen(true)}
         onOpenCompare={() => setIsCompareOpen(true)}
         compareCount={compareList.length}
+        onGoHome={() => {
+          setSelectedCategory('all');
+          setSearchQuery('');
+          setPriceRange(15000);
+          setSortBy('featured');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
       />
 
       {/* Hero Banner Slider */}

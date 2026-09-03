@@ -30,7 +30,8 @@ export default function Header({
   onOpenAboutUs,
   onOpenWishlist,
   onOpenCompare,
-  compareCount = 0
+  compareCount = 0,
+  onGoHome
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -129,8 +130,14 @@ export default function Header({
 
           {/* Sailor Style Brand Logo */}
           <div 
-            onClick={() => setSelectedCategory('all')}
+            onClick={() => {
+              setSelectedCategory('all');
+              setSearchQuery('');
+              if (onGoHome) onGoHome();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="flex items-center gap-3 cursor-pointer group"
+            title="Go to Sail & Stitch Main Page"
           >
             <div className="bg-[#0b1b3d] p-2.5 rounded-xl shadow-md group-hover:scale-105 transition-transform">
               <Anchor className="w-6 h-6 text-amber-400 stroke-[2.5]" />
