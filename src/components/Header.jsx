@@ -25,7 +25,9 @@ export default function Header({
   setSelectedCategory,
   user,
   onOpenAuth,
-  onOpenProfile
+  onOpenProfile,
+  onOpenBlog,
+  onOpenAboutUs
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -51,9 +53,19 @@ export default function Header({
               Store Locator
             </button>
             <span className="hidden md:inline text-slate-600">|</span>
-            <span className="hidden lg:inline text-slate-300">Blog</span>
+            <button 
+              onClick={onOpenBlog}
+              className="hidden lg:inline text-slate-300 hover:text-amber-400 transition-colors cursor-pointer"
+            >
+              Blog
+            </button>
             <span className="hidden lg:inline text-slate-600">|</span>
-            <span className="hidden lg:inline text-slate-300">About Us</span>
+            <button 
+              onClick={onOpenAboutUs}
+              className="hidden lg:inline text-slate-300 hover:text-amber-400 transition-colors cursor-pointer"
+            >
+              About Us
+            </button>
           </div>
 
           {/* Right links */}

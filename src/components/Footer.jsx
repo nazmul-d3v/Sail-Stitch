@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Anchor, Mail, Phone, Send, Check } from 'lucide-react';
 
-export default function Footer({ onOpenStoreLocator }) {
+export default function Footer({ onOpenStoreLocator, onOpenAboutUs, onOpenBlog }) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -101,11 +101,11 @@ export default function Footer({ onOpenStoreLocator }) {
             KNOW US
           </h4>
           <ul className="space-y-2 text-slate-400">
-            <li><a href="#" className="hover:text-amber-400 transition-colors">About Us</a></li>
-            <li><a href="#" className="hover:text-amber-400 transition-colors">Blog</a></li>
+            <li><button onClick={onOpenAboutUs} className="hover:text-amber-400 transition-colors">About Us</button></li>
+            <li><button onClick={onOpenBlog} className="hover:text-amber-400 transition-colors">Blog</button></li>
             <li><button onClick={onOpenStoreLocator} className="hover:text-amber-400 transition-colors">Store Locator</button></li>
-            <li><a href="#" className="hover:text-amber-400 transition-colors">Career & Culture</a></li>
-            <li><a href="#" className="hover:text-amber-400 transition-colors">Privacy Policy</a></li>
+            <li><button onClick={onOpenAboutUs} className="hover:text-amber-400 transition-colors">Career & Culture</button></li>
+            <li><button onClick={onOpenAboutUs} className="hover:text-amber-400 transition-colors">Privacy Policy</button></li>
           </ul>
         </div>
 

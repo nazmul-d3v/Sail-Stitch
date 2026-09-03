@@ -9,6 +9,8 @@ import CheckoutModal from './components/CheckoutModal';
 import StoreLocatorModal from './components/StoreLocatorModal';
 import AuthModal from './components/AuthModal';
 import UserProfileModal from './components/UserProfileModal';
+import BlogModal from './components/BlogModal';
+import AboutUsModal from './components/AboutUsModal';
 import Footer from './components/Footer';
 import { PRODUCTS, CATEGORIES } from './data/products';
 import { SlidersHorizontal, ArrowUpDown, ShoppingBag, Home, MapPin, Search, Sparkles } from 'lucide-react';
@@ -27,6 +29,8 @@ export default function App() {
   const [isStoreLocatorOpen, setIsStoreLocatorOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isBlogOpen, setIsBlogOpen] = useState(false);
+  const [isAboutUsOpen, setIsAboutUsOpen] = useState(false);
 
   // User Authentication state persisted in localStorage
   const [user, setUser] = useState(() => {
@@ -164,6 +168,8 @@ export default function App() {
         user={user}
         onOpenAuth={() => setIsAuthModalOpen(true)}
         onOpenProfile={() => setIsProfileModalOpen(true)}
+        onOpenBlog={() => setIsBlogOpen(true)}
+        onOpenAboutUs={() => setIsAboutUsOpen(true)}
       />
 
       {/* Hero Banner Slider */}
@@ -268,7 +274,11 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <Footer onOpenStoreLocator={() => setIsStoreLocatorOpen(true)} />
+      <Footer 
+        onOpenStoreLocator={() => setIsStoreLocatorOpen(true)}
+        onOpenAboutUs={() => setIsAboutUsOpen(true)}
+        onOpenBlog={() => setIsBlogOpen(true)}
+      />
 
       {/* Mobile Bottom Sticky Navigation */}
       <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-slate-950/95 backdrop-blur-xl border-t border-slate-800 px-6 py-2.5 flex items-center justify-between text-white text-[10px]">
@@ -357,6 +367,18 @@ export default function App() {
         onLogout={handleLogout}
         wishlistCount={wishlist.length}
         onOpenWishlist={() => setSelectedCategory('all')}
+      />
+
+      {/* Blog & Fashion Journal Modal */}
+      <BlogModal
+        isOpen={isBlogOpen}
+        onClose={() => setIsBlogOpen(false)}
+      />
+
+      {/* About Us & Heritage Modal */}
+      <AboutUsModal
+        isOpen={isAboutUsOpen}
+        onClose={() => setIsAboutUsOpen(false)}
       />
     </div>
   );
