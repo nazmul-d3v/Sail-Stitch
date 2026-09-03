@@ -159,8 +159,8 @@ export const PRODUCTS = [
     discount: '13% OFF',
     sizes: ['M', 'L', 'XL'],
     colors: [{ name: 'Emerald Green', hex: '#047857' }],
-    mainImage: 'https://images.unsplash.com/photo-1597983073493-88cd35cf03b0?q=80&w=800&auto=format&fit=crop',
-    images: ['https://images.unsplash.com/photo-1597983073493-88cd35cf03b0?q=80&w=800&auto=format&fit=crop'],
+    mainImage: '/images/emerald_green_mens_kurta.jpg',
+    images: ['/images/emerald_green_mens_kurta.jpg'],
     fabric: 'Raw Silk Blend with Contrast Piping',
     description: 'Rich emerald green kurta with contrasting gold neck piping and sleek slim fit design.',
     inStock: true
@@ -179,8 +179,8 @@ export const PRODUCTS = [
     discount: '15% OFF',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     colors: [{ name: 'Champagne Gold', hex: '#eab308' }],
-    mainImage: 'https://images.unsplash.com/photo-1548883354-7622d03aca27?q=80&w=800&auto=format&fit=crop',
-    images: ['https://images.unsplash.com/photo-1548883354-7622d03aca27?q=80&w=800&auto=format&fit=crop'],
+    mainImage: '/images/golden_zari_mens_panjabi.jpg',
+    images: ['/images/golden_zari_mens_panjabi.jpg'],
     fabric: 'Heavy Banarasi Silk Weave',
     description: 'Opulent golden zari silk Panjabi with intricate brocade pattern across chest and collar.',
     inStock: true
@@ -199,8 +199,8 @@ export const PRODUCTS = [
     discount: '13% OFF',
     sizes: ['M', 'L', 'XL'],
     colors: [{ name: 'Olive Green', hex: '#3f6212' }],
-    mainImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop',
-    images: ['https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop'],
+    mainImage: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=800&auto=format&fit=crop',
+    images: ['https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=800&auto=format&fit=crop'],
     fabric: 'Raw Silk Blend with Soft Cotton Lining',
     description: 'Earthy olive raw silk kurta set with subtle shoulder detailing and comfortable fit.',
     inStock: true
@@ -951,8 +951,8 @@ export const PRODUCTS = [
     discount: '16% OFF',
     sizes: ['S', 'M', 'L'],
     colors: [{ name: 'Champagne Gold', hex: '#fde047' }],
-    mainImage: '/images/emerald_kurti_set.jpg',
-    images: ['/images/emerald_kurti_set.jpg'],
+    mainImage: 'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?q=80&w=800&auto=format&fit=crop',
+    images: ['https://images.unsplash.com/photo-1554412933-514a83d2f3c8?q=80&w=800&auto=format&fit=crop'],
     fabric: 'Pure Viscose Satin',
     description: 'Delicate silk satin camisole top with spaghetti shoulder straps.',
     inStock: true
