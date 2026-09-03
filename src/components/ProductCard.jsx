@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Eye, ShoppingBag, Star, Check } from 'lucide-react';
+import { Heart, Eye, ShoppingBag, Star, Check, GitCompare } from 'lucide-react';
 
 const FALLBACK_IMAGE = '/images/emerald_kurti_set.jpg';
 
@@ -8,7 +8,9 @@ export default function ProductCard({
   onQuickView, 
   onAddToCart, 
   onToggleWishlist, 
-  isWishlisted 
+  isWishlisted,
+  onToggleCompare,
+  isCompared
 }) {
   const [selectedSize, setSelectedSize] = useState(product.sizes[0] || 'M');
   const [addedAnimation, setAddedAnimation] = useState(false);
@@ -49,20 +51,42 @@ export default function ProductCard({
           )}
         </div>
 
-        {/* Wishlist Button */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onToggleWishlist(product.id);
-          }}
-          className={`absolute top-3 right-3 z-10 p-2.5 rounded-full transition-all backdrop-blur-md ${
-            isWishlisted 
-              ? 'bg-rose-500 text-white shadow-lg shadow-rose-500/30' 
-              : 'bg-white/90 text-slate-700 hover:text-rose-600 hover:bg-white shadow'
-          }`}
-        >
-          <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
-        </button>
+        {/* Action Buttons Top Right (Wishlist & Compare) */}
+        <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
+          {/* Wishlist Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleWishlist(product.id);
+            }}
+            className={`p-2.5 rounded-full transition-all backdrop-blur-md ${
+              isWishlisted 
+                ? 'bg-rose-500 text-white shadow-lg shadow-rose-500/30' 
+                : 'bg-white/90 text-slate-700 hover:text-rose-600 hover:bg-white shadow'
+            }`}
+            title={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+          >
+            <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
+          </button>
+
+          {/* Compare Button */}
+          {onToggleCompare && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggleCompare(product.id);
+              }}
+              className={`p-2.5 rounded-full transition-all backdrop-blur-md ${
+                isCompared 
+                  ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/30 font-bold' 
+                  : 'bg-white/90 text-slate-700 hover:text-amber-600 hover:bg-white shadow'
+              }`}
+              title={isCompared ? "Remove from compare" : "Add to compare"}
+            >
+              <GitCompare className="w-4 h-4 stroke-[2.2]" />
+            </button>
+          )}
+        </div>
 
         {/* Quick View Floating Button */}
         <div className="absolute inset-x-0 bottom-3 px-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

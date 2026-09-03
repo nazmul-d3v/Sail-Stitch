@@ -11,6 +11,8 @@ import AuthModal from './components/AuthModal';
 import UserProfileModal from './components/UserProfileModal';
 import BlogModal from './components/BlogModal';
 import AboutUsModal from './components/AboutUsModal';
+import WishlistModal from './components/WishlistModal';
+import CompareModal from './components/CompareModal';
 import Footer from './components/Footer';
 import { PRODUCTS, CATEGORIES } from './data/products';
 import { SlidersHorizontal, ArrowUpDown, ShoppingBag, Home, MapPin, Search, Sparkles } from 'lucide-react';
@@ -31,6 +33,8 @@ export default function App() {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isBlogOpen, setIsBlogOpen] = useState(false);
   const [isAboutUsOpen, setIsAboutUsOpen] = useState(false);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+  const [isCompareOpen, setIsCompareOpen] = useState(false);
 
   // User Authentication state persisted in localStorage
   const [user, setUser] = useState(() => {
@@ -51,6 +55,11 @@ export default function App() {
     return saved ? JSON.parse(saved) : ['em-01', 'ew-01'];
   });
 
+  const [compareList, setCompareList] = useState(() => {
+    const saved = localStorage.getItem('sail_stitch_compare');
+    return saved ? JSON.parse(saved) : ['em-01', 'em-02'];
+  });
+
   useEffect(() => {
     if (user) {
       localStorage.setItem('sail_stitch_user', JSON.stringify(user));
@@ -66,6 +75,10 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('sail_stitch_wishlist', JSON.stringify(wishlist));
   }, [wishlist]);
+
+  useEffect(() => {
+    localStorage.setItem('sail_stitch_compare', JSON.stringify(compareList));
+  }, [compareList]);
 
   const handleLoginSuccess = (userData) => {
     setUser(userData);
@@ -121,6 +134,14 @@ export default function App() {
     );
   };
 
+  const handleToggleCompare = (productId) => {
+    setCompareList(prev => 
+      prev.includes(productId) 
+        ? prev.filter(id => id !== productId)
+        : [...prev, productId]
+    );
+  };
+
   // Filtered & Sorted Products
   const filteredProducts = useMemo(() => {
     return PRODUCTS.filter(product => {
@@ -170,6 +191,9 @@ export default function App() {
         onOpenProfile={() => setIsProfileModalOpen(true)}
         onOpenBlog={() => setIsBlogOpen(true)}
         onOpenAboutUs={() => setIsAboutUsOpen(true)}
+        onOpenWishlist={() => setIsWishlistOpen(true)}
+        onOpenCompare={() => setIsCompareOpen(true)}
+        compareCount={compareList.length}
       />
 
       {/* Hero Banner Slider */}
@@ -267,6 +291,8 @@ export default function App() {
                 onAddToCart={handleAddToCart}
                 onToggleWishlist={handleToggleWishlist}
                 isWishlisted={wishlist.includes(product.id)}
+                onToggleCompare={handleToggleCompare}
+                isCompared={compareList.includes(product.id)}
               />
             ))}
           </div>
@@ -379,6 +405,28 @@ export default function App() {
       <AboutUsModal
         isOpen={isAboutUsOpen}
         onClose={() => setIsAboutUsOpen(false)}
+      />
+
+      {/* Wishlist Modal Drawer */}
+      <WishlistModal
+        isOpen={isWishlistOpen}
+        onClose={() => setIsWishlistOpen(false)}
+        wishlist={wishlist}
+        onToggleWishlist={handleToggleWishlist}
+        onAddToCart={handleAddToCart}
+        onOpenCart={() => setIsCartOpen(true)}
+      />
+
+      {/* Compare Specifications Modal */}
+      <CompareModal
+        isOpen={isCompareOpen}
+        onClose={() => setIsCompareOpen(false)}
+        compareIds={compareList}
+        onRemoveFromCompare={handleToggleCompare}
+        onClearCompare={() => setCompareList([])}
+        onAddToCart={handleAddToCart}
+        onOpenCart={() => setIsCartOpen(true)}
+        onSelectCategory={setSelectedCategory}
       />
     </div>
   );

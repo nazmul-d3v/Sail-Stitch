@@ -27,7 +27,10 @@ export default function Header({
   onOpenAuth,
   onOpenProfile,
   onOpenBlog,
-  onOpenAboutUs
+  onOpenAboutUs,
+  onOpenWishlist,
+  onOpenCompare,
+  compareCount = 0
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -47,7 +50,7 @@ export default function Header({
             <span className="hidden md:inline text-slate-600">|</span>
             <button 
               onClick={onOpenStoreLocator}
-              className="hidden md:flex items-center gap-1 hover:text-amber-400 transition-colors"
+              className="hidden md:flex items-center gap-1 hover:text-amber-400 transition-colors cursor-pointer"
             >
               <MapPin className="w-3.5 h-3.5 text-amber-400" />
               Store Locator
@@ -73,7 +76,7 @@ export default function Header({
             {user ? (
               <button 
                 onClick={onOpenProfile}
-                className="flex items-center gap-1.5 text-slate-100 hover:text-amber-400 font-bold bg-slate-900/90 px-3 py-1 rounded-full border border-amber-500/40 hover:border-amber-400 transition-all shadow-sm"
+                className="flex items-center gap-1.5 text-slate-100 hover:text-amber-400 font-bold bg-slate-900/90 px-3 py-1 rounded-full border border-amber-500/40 hover:border-amber-400 transition-all shadow-sm cursor-pointer"
               >
                 <img 
                   src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop'} 
@@ -92,18 +95,21 @@ export default function Header({
               </button>
             )}
             <span className="text-slate-600">|</span>
-            <span 
-              onClick={() => setSelectedCategory('all')}
-              className="flex items-center gap-1 text-slate-300 hover:text-rose-400 cursor-pointer"
+            <button 
+              onClick={onOpenWishlist}
+              className="flex items-center gap-1 text-slate-300 hover:text-rose-400 transition-colors cursor-pointer"
             >
-              <Heart className="w-3.5 h-3.5 text-rose-400" />
-              My Wishlist ({wishlistCount})
-            </span>
+              <Heart className={`w-3.5 h-3.5 text-rose-400 ${wishlistCount > 0 ? 'fill-rose-400' : ''}`} />
+              <span>My Wishlist ({wishlistCount})</span>
+            </button>
             <span className="text-slate-600">|</span>
-            <span className="flex items-center gap-1 text-slate-300">
+            <button 
+              onClick={onOpenCompare}
+              className="flex items-center gap-1 text-slate-300 hover:text-amber-400 transition-colors cursor-pointer"
+            >
               <GitCompare className="w-3.5 h-3.5 text-amber-400" />
-              Compare(0)
-            </span>
+              <span>Compare({compareCount})</span>
+            </button>
           </div>
 
         </div>
