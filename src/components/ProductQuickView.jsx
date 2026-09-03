@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Star, ShoppingBag, Heart, Truck, ShieldCheck, RefreshCw, Check } from 'lucide-react';
 
 export default function ProductQuickView({ 
@@ -8,13 +8,23 @@ export default function ProductQuickView({
   onToggleWishlist, 
   isWishlisted 
 }) {
-  if (!product) return null;
-
-  const [selectedImage, setSelectedImage] = useState(product.mainImage);
-  const [selectedSize, setSelectedSize] = useState(product.sizes[0] || 'M');
-  const [selectedColor, setSelectedColor] = useState(product.colors[0] || null);
+  const [selectedImage, setSelectedImage] = useState(product?.mainImage || '');
+  const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] || 'M');
+  const [selectedColor, setSelectedColor] = useState(product?.colors?.[0] || null);
   const [quantity, setQuantity] = useState(1);
   const [addedAnimation, setAddedAnimation] = useState(false);
+
+  useEffect(() => {
+    if (product) {
+      setSelectedImage(product.mainImage);
+      setSelectedSize(product.sizes?.[0] || 'M');
+      setSelectedColor(product.colors?.[0] || null);
+      setQuantity(1);
+      setAddedAnimation(false);
+    }
+  }, [product]);
+
+  if (!product) return null;
 
   const handleAdd = () => {
     onAddToCart(product, selectedSize, selectedColor?.name, quantity);

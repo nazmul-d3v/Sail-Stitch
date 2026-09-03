@@ -3,9 +3,9 @@ import { X, MapPin, Phone, Clock, Search, Navigation } from 'lucide-react';
 import { OUTLETS } from '../data/products';
 
 export default function StoreLocatorModal({ isOpen, onClose }) {
-  if (!isOpen) return null;
-
   const [search, setSearch] = useState('');
+
+  if (!isOpen) return null;
 
   const filtered = OUTLETS.filter(o => 
     o.name.toLowerCase().includes(search.toLowerCase()) || 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Anchor, Scissors, Mail, Phone, MapPin, Send, Check } from 'lucide-react';
+import { Anchor, Mail, Phone, Send, Check } from 'lucide-react';
 
 export default function Footer({ onOpenStoreLocator }) {
   const [email, setEmail] = useState('');

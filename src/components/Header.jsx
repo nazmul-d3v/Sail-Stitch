@@ -8,10 +8,7 @@ import {
   Menu, 
   X, 
   Anchor, 
-  Scissors, 
   User, 
-  ChevronDown,
-  Sparkles,
   GitCompare
 } from 'lucide-react';
 import { CATEGORIES } from '../data/products';
@@ -28,7 +25,6 @@ export default function Header({
   setSelectedCategory
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchFocused, setSearchFocused] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 w-full bg-white border-b border-slate-200 shadow-sm transition-all duration-300">

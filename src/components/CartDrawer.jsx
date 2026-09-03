@@ -9,11 +9,11 @@ export default function CartDrawer({
   onRemoveItem, 
   onOpenCheckout 
 }) {
-  if (!isOpen) return null;
-
   const [promoInput, setPromoInput] = useState('');
   const [promoApplied, setPromoApplied] = useState(false);
   const [promoError, setPromoError] = useState('');
+
+  if (!isOpen) return null;
 
   const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
   const discountAmount = promoApplied ? Math.round(subtotal * 0.10) : 0;

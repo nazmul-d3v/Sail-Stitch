@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, CheckCircle, ShieldCheck, Truck, CreditCard, Smartphone, DollarSign } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, CheckCircle, Truck, CreditCard, Smartphone, DollarSign } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 const DISTRICTS = [
@@ -12,8 +12,6 @@ export default function CheckoutModal({
   cartItems, 
   onClearCart 
 }) {
-  if (!isOpen) return null;
-
   const [step, setStep] = useState('form'); // 'form' | 'success'
   const [paymentMethod, setPaymentMethod] = useState('bkash');
   const [formData, setFormData] = useState({
@@ -25,6 +23,14 @@ export default function CheckoutModal({
     notes: ''
   });
   const [orderId, setOrderId] = useState('');
+
+  useEffect(() => {
+    if (isOpen) {
+      setStep('form');
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
 
   const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
   const shippingFee = subtotal > 3000 ? 0 : 120;
