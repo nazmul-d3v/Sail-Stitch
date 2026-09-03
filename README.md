@@ -1,17 +1,29 @@
-# React + Vite
+# ⛵ Sail & Stitch (Urban Weave)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> **Live Demo**: [https://sail-stitch.vercel.app](https://sail-stitch.vercel.app)
 
-Currently, two official plugins are available:
+A modern, premium e-commerce web application for traditional and contemporary fashion clothing (Panjabi, Kurti, Saree, Kabli suits, and more). Built with React, Vite, and Tailwind CSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+- **Hero Slider & Collections Showcase**: Dynamic promotional banners and curated fashion categories.
+- **Product Catalog & Quick View**: Instant product modal previews with size selection, color pickers, and stock status.
+- **Interactive Shopping Cart**: Slide-over drawer with item management, quantity controls, and order summary calculation.
+- **Checkout Flow**: Sleek checkout modal with customer details, payment method selection, and instant confirmation confetti.
+- **Store Locator**: Interactive store locator modal with store hours, contacts, and directions.
+- **Responsive & Modern Design**: Glassmorphism UI, smooth micro-animations, custom dark elements, and mobile-first responsive layout.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the Oxlint configuration
+- **Frontend**: React 19, Vite 8
+- **Styling**: Tailwind CSS v4, Custom CSS Animations
+- **Icons**: Lucide React
+- **Effects**: Canvas Confetti
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
-# Sail-Stitch
+## 🏃 Local Development
+
+```bash
+npm run dev
+```
+
+Server runs locally at `http://localhost:5173/`.
